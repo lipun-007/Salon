@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>J.B. Salon | Premium Hair Cut & Grooming Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              400: '#f7d070',
+              500: '#e5b643',
+              600: '#c59325',
+              700: '#996f16',
+            },
+            darkbg: '#0c0c0e',
+            darkcard: '#141418',
+            darkborder: '#26262e'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Custom Luxury Styling & Animations */
+    body {
+      background-color: #0b0b0d;
+      color: #f3f4f6;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    
+    /* Wood slat background simulation for Hero matching shop photo */
+    .wood-slats-bg {
+      background: linear-gradient(90deg, 
+        rgba(26,26,30,0.95) 0%, 
+        rgba(35,35,42,0.95) 50%, 
+        rgba(26,26,30,0.95) 100%),
+        repeating-linear-gradient(90deg, #1c1a17, #1c1a17 12px, #121110 12px, #121110 16px);
+    }
+    
+    /* Backlit Logo Glow Effect */
+    .salon-logo-glow {
+      filter: drop-shadow(0 0 25px rgba(230, 180, 70, 0.45));
+    }
+    .salon-logo-glow-sm {
+      filter: drop-shadow(0 0 8px rgba(230, 180, 70, 0.35));
+    }
+    
+    /* Spotlights beam simulation */
+    .spotlight-left {
+      background: radial-gradient(circle at 10% 40%, rgba(242, 204, 128, 0.15) 0%, transparent 60%);
+    }
+    .spotlight-right {
+      background: radial-gradient(circle at 90% 40%, rgba(242, 204, 128, 0.15) 0%, transparent 60%);
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #121215; }
+    ::-webkit-scrollbar-thumb { background: #33333d; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #d4a338; }
+
+    /* Touch target optimizations */
+    .touch-manipulate { touch-action: manipulation; }
+
+    @media print {
+      body * { visibility: hidden; }
+      #printablePassModal, #printablePassModal * { visibility: visible; }
+      #printablePassModal { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white; color: black; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-black">
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div id="topBanner" class="bg-gradient-to-r from-amber-700 via-yellow-600 to-amber-700 text-black text-xs md:text-sm font-semibold py-1.5 px-4 text-center flex items-center justify-between shadow-md">
+    <div class="flex items-center space-x-2 justify-center w-full">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-950 animate-ping"></span>
+      <span id="bannerText">✂️ Welcome to J.B. Salon! Book your slot online & skip the waiting line.</span>
+    </div>
+    <button onclick="toggleBanner()" class="text-black hover:text-white font-bold px-1 ml-2">✕</button>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-black/85 border-b border-yellow-900/30 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo & Name -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div id="navLogoContainer" class="w-12 h-12 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+          <!-- Logo rendered dynamically -->
+        </div>
+        <div class="flex flex-col">
+          <span id="navBrandName" class="font-cinzel text-xl sm:text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-500">
+            J.B. SALON
+          </span>
+          <span id="navBrandTagline" class="text-[10px] text-amber-200/70 tracking-widest uppercase">
+            Gents Hair Cut & Spa
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+        <a href="#services" class="text-gray-300 hover:text-amber-400 transition" id="navLinkServices">Services & Rates</a>
+        <a href="#barbers" class="text-gray-300 hover:text-amber-400 transition" id="navLinkBarbers">Stylists</a>
+        <a href="#booking" class="text-gray-300 hover:text-amber-400 transition" id="navLinkBook">Book Slot</a>
+        <a href="#queue" class="text-gray-300 hover:text-amber-400 transition" id="navLinkQueue">Live Queue</a>
+        <a href="#contact" class="text-gray-300 hover:text-amber-400 transition" id="navLinkContact">Contact</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Language Switcher -->
+        <button onclick="toggleLanguage()" class="bg-darkcard border border-amber-500/30 hover:border-amber-400 px-3 py-1.5 rounded-full text-xs font-semibold text-amber-300 flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+          <span id="langLabel">हिंदी</span>
+        </button>
+
+        <!-- Admin Button -->
+        <button onclick="openAdminModal()" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          <span id="adminNavBtnText">Admin</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white p-2 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-darkcard border-b border-yellow-900/30 px-4 pt-3 pb-6 space-y-3">
+      <a href="#services" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-amber-400 py-2 text-base font-medium">Services & Rates</a>
+      <a href="#barbers" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-amber-400 py-2 text-base font-medium">Stylists Roster</a>
+      <a href="#booking" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-amber-400 py-2 text-base font-medium">Book Appointment</a>
+      <a href="#queue" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-amber-400 py-2 text-base font-medium">Live Queue Board</a>
+      <a href="#contact" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-amber-400 py-2 text-base font-medium">Shop Details</a>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    
+    <!-- HERO SECTION (WITH WOOD-SLAT WALL & BACKLIT J.B. SALON LOGO RECREATION) -->
+    <section id="hero" class="relative wood-slats-bg py-16 lg:py-24 border-b border-amber-900/30 overflow-hidden">
+      <!-- Dual Cone Spotlights Simulation -->
+      <div class="absolute inset-0 spotlight-left pointer-events-none"></div>
+      <div class="absolute inset-0 spotlight-right pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Hero Text Content -->
+          <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span id="heroBadge">Official J.B. Salon Online Portal</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-cinzel tracking-tight text-white leading-tight">
+              <span id="heroTitleLine1">PREMIUM GROOMING</span> <br/>
+              <span id="heroTitleLine2" class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-500">FOR THE MODERN MAN</span>
+            </h1>
+
+            <p id="heroDescription" class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light">
+              Experience perfection in hair cuts, beard shaping, facials & hair treatments. Reserve your time slot online, get your digital token, and enjoy zero waiting time.
+            </p>
+
+            <!-- Call to Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <a href="#booking" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-bold text-center shadow-lg hover:shadow-amber-500/25 transition transform hover:-translate-y-0.5 touch-manipulate" id="heroBookBtn">
+                ⚡ Book Appointment Now
+              </a>
+              <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-black/60 border border-amber-500/40 text-amber-300 font-semibold text-center hover:bg-amber-500/10 transition touch-manipulate" id="heroMenuBtn">
+                📋 View Services & Rates
+              </a>
+            </div>
+
+            <!-- Quick Stats Banner -->
+            <div class="grid grid-cols-3 gap-4 pt-6 border-t border-amber-900/40 max-w-md mx-auto lg:mx-0">
+              <div class="text-center lg:text-left">
+                <p class="text-2xl font-bold text-amber-400 font-cinzel">100%</p>
+                <p class="text-xs text-gray-400" id="heroStat1">Hygiene & Safety</p>
+              </div>
+              <div class="text-center lg:text-left">
+                <p class="text-2xl font-bold text-amber-400 font-cinzel">4.9 ★</p>
+                <p class="text-xs text-gray-400" id="heroStat2">Customer Rating</p>
+              </div>
+              <div class="text-center lg:text-left">
+                <p class="text-2xl font-bold text-amber-400 font-cinzel">0 Min</p>
+                <p class="text-xs text-gray-400" id="heroStat3">Wait With Booking</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Backlit Circular Sign Recreation (Matches Uploaded Photo) -->
+          <div class="lg:col-span-5 flex flex-col items-center justify-center">
+            <div class="relative p-6 sm:p-8 rounded-3xl bg-black/40 border border-amber-500/20 shadow-2xl backdrop-blur-sm flex flex-col items-center">
+              
+              <!-- Backlight Lamp Fixtures Visual -->
+              <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-3 h-8 bg-amber-500/40 rounded-l shadow-[0_0_15px_#f59e0b]"></div>
+              <div class="absolute -right-3 top-1/2 -translate-y-1/2 w-3 h-8 bg-amber-500/40 rounded-r shadow-[0_0_15px_#f59e0b]"></div>
+
+              <!-- Main Illuminated Circular Shop Sign -->
+              <div id="heroLogoDisplay" class="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 salon-logo-glow transition-transform duration-500 hover:scale-105">
+                <!-- SVG dynamically inserted -->
+              </div>
+
+              <!-- Shop Status Badge -->
+              <div id="heroShopStatusBadge" class="mt-6 px-4 py-2 rounded-full bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 text-xs font-semibold flex items-center gap-2 shadow-lg">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>SHOP IS OPEN TODAY • 09:00 AM - 09:00 PM</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES & RATES SECTION -->
+    <section id="services" class="py-16 bg-darkbg border-b border-yellow-900/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
+          <h2 class="text-xs font-bold tracking-widest text-amber-400 uppercase" id="secServicesSubtitle">OUR PRICE LIST</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold font-cinzel text-white" id="secServicesTitle">Services & Hair Treatments</h3>
+          <p class="text-gray-400 text-sm" id="secServicesDesc">Select services below to instantly calculate duration & total fee, then proceed to book.</p>
+        </div>
+
+        <!-- Filter Categories -->
+        <div class="flex flex-wrap justify-center gap-2 mb-10" id="categoryPills">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="servicesGrid">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Sticky / Embedded Live Calculation Summary Box -->
+        <div id="servicesSummaryBar" class="mt-10 bg-gradient-to-r from-neutral-900 via-darkcard to-neutral-900 border border-amber-500/40 rounded-2xl p-6 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl">
+              ✂️
+            </div>
+            <div>
+              <p class="text-xs text-amber-400 font-semibold uppercase tracking-wider" id="summaryTitle">Selected Services</p>
+              <h4 class="text-lg font-bold text-white" id="selectedCountText">0 Services Selected</h4>
+              <p class="text-xs text-gray-400" id="selectedDurationText">Est. Duration: 0 mins</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-6">
+            <div class="text-right">
+              <p class="text-xs text-gray-400" id="totalFeeLabel">Total Payable Amount</p>
+              <p class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-cinzel" id="selectedTotalPrice">₹0</p>
+            </div>
+            <a href="#booking" onclick="scrollToBookingWithSelected()" class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-sm shadow-md transition touch-manipulate flex items-center gap-2" id="proceedBookingBtn">
+              <span>Book Selected</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BARBERS / STYLISTS ROSTER -->
+    <section id="barbers" class="py-16 bg-neutral-950 border-b border-yellow-900/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+          <h2 class="text-xs font-bold tracking-widest text-amber-400 uppercase" id="secBarbersSubtitle">EXPERT TEAM</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold font-cinzel text-white" id="secBarbersTitle">Meet Our Master Stylists</h3>
+          <p class="text-gray-400 text-sm" id="secBarbersDesc">Choose your preferred barber while booking your appointment slot.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="barbersGrid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- APPOINTMENT BOOKING SECTION -->
+    <section id="booking" class="py-16 bg-darkbg border-b border-yellow-900/20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="bg-darkcard border border-amber-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl relative">
+          
+          <div class="text-center mb-8 space-y-2">
+            <h2 class="text-xs font-bold tracking-widest text-amber-400 uppercase" id="bookSubTitle">FAST & EASY</h2>
+            <h3 class="text-2xl sm:text-3xl font-extrabold font-cinzel text-white" id="bookMainTitle">Book Online Appointment</h3>
+            <p class="text-gray-400 text-xs sm:text-sm" id="bookDesc">Select date, barber, and your desired time slot to confirm your token.</p>
+          </div>
+
+          <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Date Picker -->
+              <div>
+                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2" id="labelBookingDate">Appointment Date *</label>
+                <input type="date" id="bookDate" required onchange="renderTimeSlots()" class="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400 transition" />
+              </div>
+
+              <!-- Barber Dropdown -->
+              <div>
+                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2" id="labelBookingBarber">Select Stylist *</label>
+                <select id="bookBarber" required onchange="renderTimeSlots()" class="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400 transition">
+                  <!-- Options populated -->
+                </select>
+              </div>
+            </div>
+
+            <!-- Customer Details -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2" id="labelCustomerName">Full Name *</label>
+                <input type="text" id="customerName" placeholder="e.g. Rahul Sharma" required class="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400 transition" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2" id="labelCustomerPhone">Mobile / WhatsApp Number *</label>
+                <input type="tel" id="customerPhone" placeholder="e.g. 9876543210" pattern="[0-9]{10}" title="Please enter 10 digit mobile number" required class="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400 transition" />
+              </div>
+            </div>
+
+            <!-- Time Slots Grid -->
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider" id="labelTimeSlot">Available Time Slots *</label>
+                <span class="text-xs text-amber-400 font-medium" id="slotNote">Sequential slots (Red = Booked)</span>
+              </div>
+              <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5 max-h-56 overflow-y-auto p-2 bg-neutral-900/50 rounded-xl border border-neutral-800" id="timeSlotsGrid">
+                <!-- Time slots populated dynamically -->
+              </div>
+              <input type="hidden" id="selectedTimeSlot" required />
+            </div>
+
+            <!-- Itemized Selected Services Summary -->
+            <div class="bg-neutral-900/80 rounded-2xl p-4 border border-amber-500/20">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold text-amber-400 uppercase tracking-wider" id="bookServicesSummaryHeading">Selected Services Summary</span>
+                <a href="#services" class="text-xs text-gray-400 underline hover:text-amber-400" id="changeServicesBtn">Add/Change Services</a>
+              </div>
+              <div id="bookingServicesList" class="text-xs text-gray-300 space-y-1">
+                <!-- List items -->
+              </div>
+              <div class="mt-3 pt-3 border-t border-neutral-800 flex items-center justify-between font-bold">
+                <span class="text-sm text-gray-200" id="totalBookingPayableText">Total Fee Payable:</span>
+                <span class="text-xl text-amber-400 font-cinzel" id="bookingTotalFeeDisplay">₹0</span>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-black font-extrabold text-base shadow-lg hover:shadow-amber-500/30 transition transform hover:-translate-y-0.5 touch-manipulate flex items-center justify-center gap-2">
+              <span id="btnConfirmBookingText">CONFIRM & GENERATE TOKEN PASS</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE QUEUE BOARD SECTION -->
+    <section id="queue" class="py-16 bg-neutral-950 border-b border-yellow-900/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
+          <h2 class="text-xs font-bold tracking-widest text-amber-400 uppercase" id="secQueueSubtitle">LIVE STATUS</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold font-cinzel text-white" id="secQueueTitle">Today's Live Waiting Queue</h3>
+          <p class="text-gray-400 text-sm" id="secQueueDesc">Real-time status of current customers in salon and upcoming tokens.</p>
+        </div>
+
+        <div class="bg-darkcard border border-amber-500/20 rounded-2xl overflow-hidden shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-gray-300">
+              <thead class="bg-neutral-900 text-xs uppercase font-semibold text-amber-400 border-b border-neutral-800">
+                <tr>
+                  <th class="py-4 px-6">Token #</th>
+                  <th class="py-4 px-6">Customer Name</th>
+                  <th class="py-4 px-6">Barber</th>
+                  <th class="py-4 px-6">Time Slot</th>
+                  <th class="py-4 px-6">Services</th>
+                  <th class="py-4 px-6 text-right">Amount</th>
+                  <th class="py-4 px-6 text-center">Status</th>
+                </tr>
+              </thead>
+              <tbody id="queueTableBody" class="divide-y divide-neutral-800">
+                <!-- Queue rows rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT & SHOP DETAILS SECTION -->
+    <section id="contact" class="py-16 bg-darkbg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          <div class="space-y-6">
+            <h2 class="text-xs font-bold tracking-widest text-amber-400 uppercase" id="secContactSubtitle">VISIT US</h2>
+            <h3 class="text-3xl sm:text-4xl font-extrabold font-cinzel text-white" id="contactShopName">J.B. SALON</h3>
+            <p class="text-gray-300 text-sm leading-relaxed" id="contactTagline">Modern Luxury Barber Shop providing premium haircuts, hair styling, beard grooming, facial treatments, and hair care.</p>
+            
+            <div class="space-y-4 pt-2">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">📍</div>
+                <div>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase" id="labelAddress">Shop Address</h4>
+                  <p class="text-white text-sm font-medium" id="contactAddress">Main Market Road, Near Central Plaza, City Center</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">📞</div>
+                <div>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase" id="labelPhone">Phone & WhatsApp</h4>
+                  <p class="text-white text-sm font-medium" id="contactPhone">+91 98765 43210</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">🕒</div>
+                <div>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase" id="labelHours">Opening Hours</h4>
+                  <p class="text-white text-sm font-medium" id="contactHours">Monday - Sunday: 09:00 AM - 09:00 PM</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4 pt-4">
+              <a id="btnCallShop" href="tel:9876543210" class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-sm flex items-center gap-2 transition touch-manipulate">
+                📞 Call Shop Now
+              </a>
+              <a id="btnMapDirections" href="https://maps.google.com" target="_blank" class="px-6 py-3 rounded-xl bg-neutral-800 border border-neutral-700 hover:border-amber-400 text-white font-semibold text-sm flex items-center gap-2 transition touch-manipulate">
+                🗺️ Get Directions
+              </a>
+            </div>
+          </div>
+
+          <!-- Map / Photo Showcase Box -->
+          <div class="bg-darkcard border border-amber-500/30 rounded-3xl p-6 shadow-2xl flex flex-col items-center justify-center text-center">
+            <div id="contactLogoDisplay" class="w-48 h-48 salon-logo-glow mb-4">
+              <!-- Rendered logo -->
+            </div>
+            <h4 class="text-xl font-bold font-cinzel text-amber-400" id="contactBrandTitle">J.B. SALON</h4>
+            <p class="text-xs text-gray-400 mt-1" id="contactGuarantee">Guaranteed Cleanliness • Professional Barbering</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-black border-t border-neutral-800 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div id="footerLogoContainer" class="w-8 h-8"></div>
+        <span class="text-sm font-cinzel font-bold text-gray-300" id="footerBrand">J.B. SALON © 2026</span>
+      </div>
+      <p class="text-xs text-gray-500 text-center" id="footerTag">Designed for Hair Stylists & Salon Owners</p>
+      <button onclick="openAdminModal()" class="text-xs text-amber-500/80 hover:text-amber-400 underline" id="footerAdminLink">Admin Login (PIN: 1234)</button>
+    </div>
+  </footer>
+
+  <!-- DIGITAL RECEIPT / BOOKING PASS MODAL -->
+  <div id="passModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div id="printablePassModal" class="bg-darkcard border border-amber-500/40 rounded-3xl max-w-md w-full p-6 shadow-2xl text-white relative my-8">
+      
+      <button onclick="closePassModal()" class="no-print absolute top-4 right-4 text-gray-400 hover:text-white text-xl font-bold p-2">✕</button>
+
+      <!-- Pass Content -->
+      <div class="text-center border-b border-neutral-800 pb-4">
+        <div id="passLogoContainer" class="w-24 h-24 mx-auto salon-logo-glow mb-2"></div>
+        <h3 class="text-xl font-bold font-cinzel text-amber-400" id="passShopTitle">J.B. SALON</h3>
+        <p class="text-xs text-gray-400" id="passSubtitle">Official Appointment Token Pass</p>
+      </div>
+
+      <!-- Token Badge -->
+      <div class="my-6 bg-amber-500/10 border border-amber-500/40 rounded-2xl p-4 text-center">
+        <p class="text-xs text-amber-300 font-bold tracking-widest uppercase">YOUR BOOKING TOKEN</p>
+        <p class="text-4xl font-black font-cinzel text-amber-400 tracking-wider my-1" id="passTokenNum">JB-101</p>
+        <span class="inline-block px-3 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/40 text-[11px] font-semibold" id="passStatusBadge">CONFIRMED • WAITING</span>
+      </div>
+
+      <!-- Pass Details Table -->
+      <div class="space-y-2 text-xs text-gray-300 border-b border-neutral-800 pb-4">
+        <div class="flex justify-between"><span class="text-gray-400">Customer:</span><span class="font-bold text-white" id="passCustomerName">-</span></div>
+        <div class="flex justify-between"><span class="text-gray-400">Phone:</span><span class="font-semibold text-white" id="passCustomerPhone">-</span></div>
+        <div class="flex justify-between"><span class="text-gray-400">Stylist:</span><span class="font-semibold text-amber-300" id="passBarberName">-</span></div>
+        <div class="flex justify-between"><span class="text-gray-400">Date & Time:</span><span class="font-semibold text-white" id="passDateTime">-</span></div>
+      </div>
+
+      <!-- Itemized Services -->
+      <div class="py-3 border-b border-neutral-800">
+        <p class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Booked Services</p>
+        <div id="passServicesList" class="space-y-1 text-xs text-gray-300">
+          <!-- Itemized list -->
+        </div>
+      </div>
+
+      <!-- Total Amount -->
+      <div class="flex justify-between items-center py-4">
+        <span class="text-sm font-bold text-white">Total Amount Payable:</span>
+        <span class="text-2xl font-extrabold text-amber-400 font-cinzel" id="passTotalFee">₹0</span>
+      </div>
+
+      <!-- Pass Actions -->
+      <div class="no-print space-y-2 pt-2">
+        <button onclick="sendWhatsAppPass()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md">
+          <span>📲 Send Pass on WhatsApp</span>
+        </button>
+        <button onclick="window.print()" class="w-full py-3 rounded-xl bg-neutral-800 border border-neutral-700 hover:border-amber-400 text-white font-semibold text-xs flex items-center justify-center gap-2">
+          <span>🖨️ Print / Save PDF Receipt</span>
+        </button>
+        <button onclick="closePassModal()" class="w-full py-2 text-xs text-gray-400 hover:text-white">
+          Close Window
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL MODAL (PIN: 1234) -->
+  <div id="adminModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-darkcard border border-amber-500/40 rounded-3xl max-w-5xl w-full p-4 sm:p-8 shadow-2xl text-white my-6 relative max-h-[92vh] flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-neutral-800 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">⚙️</div>
+          <div>
+            <h3 class="text-xl font-bold font-cinzel text-amber-400">J.B. Salon Live Admin Dashboard</h3>
+            <p class="text-xs text-gray-400">Manage queue, shop details, rates & styling theme</p>
+          </div>
+        </div>
+        <button onclick="closeAdminModal()" class="text-gray-400 hover:text-white text-2xl font-bold p-2">✕</button>
+      </div>
+
+      <!-- PIN AUTH LOCK SCREEN -->
+      <div id="adminPinScreen" class="py-12 flex flex-col items-center justify-center text-center space-y-4">
+        <div class="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-amber-400 text-3xl">🔒</div>
+        <h4 class="text-lg font-bold text-white">Enter Admin Access PIN</h4>
+        <p class="text-xs text-gray-400">Default security PIN is <span class="text-amber-400 font-bold">....</span></p>
+        <div class="flex gap-2 justify-center">
+          <input type="password" id="adminPinInput" maxlength="6" placeholder="PIN" class="w-36 bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-2.5 text-center text-lg text-white font-mono tracking-widest focus:outline-none focus:border-amber-400" />
+          <button onclick="verifyAdminPin()" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-sm">Unlock</button>
+        </div>
+        <p id="pinErrorMsg" class="text-xs text-rose-500 hidden font-semibold">Incorrect PIN! Try Again.</p>
+      </div>
+
+      <!-- AUTHENTICATED ADMIN CONTENT -->
+      <div id="adminContent" class="hidden flex-col flex-grow overflow-hidden pt-4 space-y-4">
+        
+        <!-- Navigation Tabs -->
+        <div class="flex border-b border-neutral-800 space-x-2 sm:space-x-4 overflow-x-auto shrink-0 pb-1">
+          <button onclick="switchAdminTab('queue')" id="tabBtnQueue" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-t-lg bg-amber-500 text-black">📋 Live Queue & Stats</button>
+          <button onclick="switchAdminTab('shop')" id="tabBtnShop" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-t-lg bg-neutral-800 text-gray-400 hover:text-white">💈 Shop Info & Logo</button>
+          <button onclick="switchAdminTab('services')" id="tabBtnServices" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-t-lg bg-neutral-800 text-gray-400 hover:text-white">✂️ Services & Rates</button>
+          <button onclick="switchAdminTab('barbers')" id="tabBtnBarbers" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-t-lg bg-neutral-800 text-gray-400 hover:text-white">👨‍🎨 Stylists</button>
+          <button onclick="switchAdminTab('theme')" id="tabBtnTheme" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-t-lg bg-neutral-800 text-gray-400 hover:text-white">🎨 Theme & Backup</button>
+        </div>
+
+        <!-- TAB 1: QUEUE & STATS -->
+        <div id="adminTabQueue" class="admin-tab space-y-6 overflow-y-auto pr-2">
+          <!-- Overview Stats -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
+              <p class="text-xs text-gray-400">Total Bookings Today</p>
+              <p class="text-2xl font-bold text-white font-cinzel" id="statTotalBookings">0</p>
+            </div>
+            <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
+              <p class="text-xs text-amber-400">Waiting Tokens</p>
+              <p class="text-2xl font-bold text-amber-400 font-cinzel" id="statWaitingBookings">0</p>
+            </div>
+            <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
+              <p class="text-xs text-emerald-400">Completed</p>
+              <p class="text-2xl font-bold text-emerald-400 font-cinzel" id="statCompletedBookings">0</p>
+            </div>
+            <div class="bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
+              <p class="text-xs text-amber-300">Estimated Revenue</p>
+              <p class="text-2xl font-bold text-amber-300 font-cinzel" id="statRevenue">₹0</p>
+            </div>
+          </div>
+
+          <!-- Queue Management Table -->
+          <div class="bg-neutral-900 rounded-xl border border-neutral-800 overflow-hidden">
+            <div class="p-4 bg-neutral-950 flex justify-between items-center border-b border-neutral-800">
+              <h4 class="text-sm font-bold text-amber-400 uppercase">Manage Customer Appointments</h4>
+              <button onclick="clearCompletedQueue()" class="text-xs text-rose-400 hover:underline">Clear Completed</button>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs text-gray-300">
+                <thead class="bg-neutral-950 text-gray-400 uppercase border-b border-neutral-800">
+                  <tr>
+                    <th class="py-3 px-4">Token</th>
+                    <th class="py-3 px-4">Customer & Phone</th>
+                    <th class="py-3 px-4">Stylist</th>
+                    <th class="py-3 px-4">Time Slot</th>
+                    <th class="py-3 px-4">Services</th>
+                    <th class="py-3 px-4">Total Fee</th>
+                    <th class="py-3 px-4">Action Status</th>
+                  </tr>
+                </thead>
+                <tbody id="adminQueueTableBody" class="divide-y divide-neutral-800">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: SHOP INFO & LOGO BRANDING -->
+        <div id="adminTabShop" class="admin-tab hidden space-y-6 overflow-y-auto pr-2">
+          <!-- Logo Selection & Custom Upload -->
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 space-y-4">
+            <h4 class="text-sm font-bold text-amber-400 uppercase tracking-wider">Logo Branding Settings</h4>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <!-- Preset 1: Official J.B. Salon Sign -->
+              <label class="cursor-pointer border border-amber-500/50 rounded-xl p-3 bg-neutral-950 flex flex-col items-center gap-2 hover:border-amber-400">
+                <input type="radio" name="logoPreset" value="official_jb" checked onchange="updateLogoMode('official_jb')" class="text-amber-500" />
+                <div class="w-16 h-16 salon-logo-glow" id="previewPresetOfficial"></div>
+                <span class="text-xs font-bold text-amber-300">Official J.B. Sign (Default)</span>
+              </label>
+
+              <!-- Preset 2: Royal Crest -->
+              <label class="cursor-pointer border border-neutral-800 rounded-xl p-3 bg-neutral-950 flex flex-col items-center gap-2 hover:border-amber-400">
+                <input type="radio" name="logoPreset" value="royal_crest" onchange="updateLogoMode('royal_crest')" class="text-amber-500" />
+                <div class="w-16 h-16" id="previewPresetRoyal"></div>
+                <span class="text-xs font-bold text-gray-300">Royal Scissors Crest</span>
+              </label>
+
+              <!-- Preset 3: Custom Image Photo Upload -->
+              <label class="cursor-pointer border border-neutral-800 rounded-xl p-3 bg-neutral-950 flex flex-col items-center gap-2 hover:border-amber-400 relative">
+                <input type="radio" name="logoPreset" value="custom_upload" onchange="updateLogoMode('custom_upload')" class="text-amber-500" />
+                <div class="w-16 h-16 rounded-full bg-neutral-800 border border-amber-500/30 flex items-center justify-center overflow-hidden" id="previewCustomBox">
+                  <span class="text-xs text-gray-400">Upload Photo</span>
+                </div>
+                <span class="text-xs font-bold text-gray-300">Custom Photo / File</span>
+                <input type="file" id="logoFileInput" accept="image/*" onchange="handleLogoFileUpload(event)" class="absolute inset-0 opacity-0 cursor-pointer" />
+              </label>
+            </div>
+
+            <div class="pt-2">
+              <label class="block text-xs font-semibold text-gray-400 mb-1">Custom Photo URL (Optional)</label>
+              <input type="text" id="logoUrlInput" placeholder="https://..." onchange="handleLogoUrlInput(this.value)" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-amber-400" />
+            </div>
+          </div>
+
+          <!-- Shop Details Form -->
+          <form onsubmit="saveShopDetails(event)" class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 space-y-4">
+            <h4 class="text-sm font-bold text-amber-400 uppercase tracking-wider">General Salon Information</h4>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Shop Name (English)</label>
+                <input type="text" id="adminShopNameEN" required class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white" />
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Shop Name (Hindi)</label>
+                <input type="text" id="adminShopNameHI" required class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white" />
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Tagline (English)</label>
+                <input type="text" id="adminTaglineEN" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white" />
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Tagline (Hindi)</label>
+                <input type="text" id="adminTaglineHI" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white" />
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Phone Number</label>
+                <input type="text" id="adminPhone" required class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white" />
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">WhatsApp Number (For booking receipts)</label>
+                <input type="text" id="adminWhatsApp" required class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white" />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block text-xs text-gray-400 mb-1">Full Address</label>
+                <input type="text" id="adminAddress" required class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white" />
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Opening Time</label>
+                <input type="time" id="adminOpenTime" required class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white" />
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Closing Time</label>
+                <input type="time" id="adminCloseTime" required class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white" />
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Appointment Slot Interval</label>
+                <select id="adminSlotInterval" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white">
+                  <option value="15">15 Minutes</option>
+                  <option value="20">20 Minutes</option>
+                  <option value="30">30 Minutes</option>
+                  <option value="45">45 Minutes</option>
+                  <option value="60">60 Minutes</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Token Prefix</label>
+                <input type="text" id="adminTokenPrefix" value="JB" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white" />
+              </div>
+              <div>
+                <label class="block text-xs text-gray-400 mb-1">Admin Security PIN</label>
+                <input type="text" id="adminSecurityPin" value="1234" required class="w-full bg-neutral-950 border border-neutral-700 rounded-xl px-3 py-2 text-xs text-white font-mono" />
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs uppercase tracking-wider">
+              Save Shop Info & Branding
+            </button>
+          </form>
+        </div>
+
+        <!-- TAB 3: SERVICES & RATES MANAGER -->
+        <div id="adminTabServices" class="admin-tab hidden space-y-6 overflow-y-auto pr-2">
+          
+          <div class="flex justify-between items-center">
+            <h4 class="text-sm font-bold text-amber-400 uppercase">Manage Services & Rates</h4>
+            <button onclick="openAddServiceModal()" class="px-3 py-1.5 rounded-lg bg-amber-500 text-black font-bold text-xs">+ Add New Service</button>
+          </div>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden">
+            <table class="w-full text-left text-xs text-gray-300">
+              <thead class="bg-neutral-950 text-gray-400 uppercase border-b border-neutral-800">
+                <tr>
+                  <th class="py-3 px-4">Service Name</th>
+                  <th class="py-3 px-4">Category</th>
+                  <th class="py-3 px-4">Duration</th>
+                  <th class="py-3 px-4">Price (₹)</th>
+                  <th class="py-3 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminServicesTableBody" class="divide-y divide-neutral-800">
+                <!-- Service rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 4: BARBERS MANAGER -->
+        <div id="adminTabBarbers" class="admin-tab hidden space-y-6 overflow-y-auto pr-2">
+          <div class="flex justify-between items-center">
+            <h4 class="text-sm font-bold text-amber-400 uppercase">Manage Barber Stylists</h4>
+            <button onclick="openAddBarberModal()" class="px-3 py-1.5 rounded-lg bg-amber-500 text-black font-bold text-xs">+ Add New Stylist</button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="adminBarbersGrid">
+            <!-- Barber cards -->
+          </div>
+        </div>
+
+        <!-- TAB 5: THEME & BACKUP -->
+        <div id="adminTabTheme" class="admin-tab hidden space-y-6 overflow-y-auto pr-2">
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 space-y-4">
+            <h4 class="text-sm font-bold text-amber-400 uppercase tracking-wider">Color Themes</h4>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <button onclick="applyThemePreset('gold')" class="p-3 rounded-xl border border-amber-500/50 bg-neutral-950 text-amber-400 font-bold text-xs">Warm Gold & Dark (Default)</button>
+              <button onclick="applyThemePreset('crimson')" class="p-3 rounded-xl border border-rose-500/50 bg-neutral-950 text-rose-400 font-bold text-xs">Bold Crimson & Red</button>
+              <button onclick="applyThemePreset('emerald')" class="p-3 rounded-xl border border-emerald-500/50 bg-neutral-950 text-emerald-400 font-bold text-xs">Luxury Emerald</button>
+              <button onclick="applyThemePreset('royal')" class="p-3 rounded-xl border border-indigo-500/50 bg-neutral-950 text-indigo-400 font-bold text-xs">Royal Sapphire Blue</button>
+              <button onclick="applyThemePreset('silver')" class="p-3 rounded-xl border border-slate-400/50 bg-neutral-950 text-slate-200 font-bold text-xs">Classic Platinum</button>
+            </div>
+          </div>
+
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 space-y-4">
+            <h4 class="text-sm font-bold text-amber-400 uppercase tracking-wider">Data Backup & Restore</h4>
+            <div class="flex flex-wrap gap-3">
+              <button onclick="exportDataJSON()" class="px-4 py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xs border border-neutral-700">📥 Export Backup JSON</button>
+              
+              <label class="px-4 py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white font-bold text-xs border border-neutral-700 cursor-pointer relative">
+                <span>📤 Import Backup JSON</span>
+                <input type="file" accept=".json" onchange="importDataJSON(event)" class="absolute inset-0 opacity-0 cursor-pointer" />
+              </label>
+
+              <button onclick="resetToFactoryDefaults()" class="px-4 py-2.5 rounded-xl bg-rose-950 text-rose-300 border border-rose-800 hover:bg-rose-900 font-bold text-xs">⚠️ Factory Reset Data</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- MAIN JAVASCRIPT APPLICATION -->
+  <script>
+    /* ==========================================================================
+       1. DEFAULT SALON DATA & LOCALSTORAGE v4 CONFIGURATION
+       ========================================================================== */
+    const STORAGE_KEY = 'jb_salon_data_v4';
+
+    const DEFAULT_DATA = {
+      lang: 'en',
+      shop: {
+        nameEN: 'J.B. SALON',
+        nameHI: 'जे.बी. सैलून',
+        taglineEN: 'Gents Hair Cut & Spa Studio',
+        taglineHI: 'जेंट्स हेयर कट व स्पा स्टूडियो',
+        phone: '+91 98765 43210',
+        whatsapp: '919876543210',
+        address: 'Main Market Road, Near Central Plaza, City Center',
+        openTime: '09:00',
+        closeTime: '21:00',
+        slotInterval: 30,
+        tokenPrefix: 'JB',
+        pin: '9692',
+        isOpen: true,
+        logoMode: 'official_jb', // 'official_jb' | 'royal_crest' | 'custom_upload'
+        customLogoUrl: ''
+      },
+      accentColor: '#f2cc80',
+      services: [
+        { id: 's1', nameEN: 'Classic Hair Cut', nameHI: 'क्लासिक हेयर कट', category: 'Haircuts', duration: 40, price: 100, desc: 'Professional haircut styled with razor finish & wash.' },
+        { id: 's2', nameEN: 'Styling & Fade Cut', nameHI: 'स्टाइलिंग व फेड कट', category: 'Haircuts', duration: 40, price: 100, desc: 'Modern skin fade, burst fade, or undercut with styling.' },
+        { id: 's3', nameEN: 'Beard Trim & Shape', nameHI: 'दाढ़ी ट्रिम व शेप', category: 'Beard & Shave', duration: 20, price: 50, desc: 'Sharp blade alignment, hot towel, and beard oil.' },
+        { id: 's4', nameEN: 'Royal Shave', nameHI: 'रॉयल शेव (हॉट टॉवल)', category: 'Beard & Shave', duration: 25, price: 50, desc: 'Traditional lather shave with hot towel relaxation.' },
+        { id: 's5', nameEN: 'Dten', nameHI:  'स्पा', category: 'Face Massage', duration: 20, price: 350, desc: 'Deep skin cleansing, scrub, glow pack & massage.' },
+        { id: 's6', nameEN: 'Hair Color & Touchup', nameHI: 'हेयर कलर व टचअप', category: 'Haircuts', duration: 35, price: 350, desc: 'Premium ammonia-free hair color application.' },
+        { id: 's7', nameEN: 'Glooming Mackup', nameHI: '', category: 'Mackup', duration: 60, price: 3000, desc: 'Speacila Bridal Mackup.' },
+        { id: 's8', nameEN: 'Massage Chair', nameHI: 'जे.बी. स्पेशल', category: 'Full Body Massage ', duration: 30, price: 200, desc: 'Automatic Chair Massage.' }
+      ],
+      barbers: [
+        { id: 'b1', name: 'Jayesh (Master Stylist)', specialty: 'Fade Cuts & Hair Tattooing', exp: '8 Years', isAvailable: true, queueCount: 2 },
+        { id: 'b2', name: 'Vikram Sharma', specialty: 'Beard Styling & Royal Shave', exp: '6 Years', isAvailable: true, queueCount: 1 },
+        { id: 'b3', name: 'Rahul Verma', specialty: 'Hair Spa & Facial Care', exp: '5 Years', isAvailable: true, queueCount: 0 }
+      ],
+      bookings: [
+        {
+          token: 'JB-101',
+          date: new Date().toISOString().split('T')[0],
+          timeSlot: '10:00 AM',
+          customerName: 'Amit Kumar',
+          phone: '9876543210',
+          barberId: 'b1',
+          barberName: 'Jayesh (Master Stylist)',
+          serviceIds: ['s1', 's3'],
+          servicesText: 'Classic Hair Cut, Beard Trim & Shape',
+          totalFee: 250,
+          status: 'Waiting', // 'Waiting' | 'In Chair' | 'Completed'
+          createdAt: new Date().toISOString()
+        }
+      ]
+    };
+
+    let appState = loadAppState();
+    let selectedServiceIds = ['s1']; // default selected haircut
+
+    function loadAppState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          return { ...DEFAULT_DATA, ...parsed, shop: { ...DEFAULT_DATA.shop, ...parsed.shop } };
+        }
+      } catch (e) {
+        console.error('Error loading state:', e);
+      }
+      return JSON.parse(JSON.stringify(DEFAULT_DATA));
+    }
+
+    function saveAppState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (e) {
+        console.error('Error saving state:', e);
+      }
+    }
+
+    /* ==========================================================================
+       2. FAITHFUL HIGH-DETAIL SVG LOGO GENERATOR (MATCHES USER'S SHOP SIGN PHOTO)
+       ========================================================================== */
+    function getOfficialJBSalonLogoSVG(accentHex = '#f2cc80', customClass = 'w-full h-full') {
+      return `
+      <svg class="${customClass}" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Outer Backlit Glow -->
+          <filter id="jbBacklightGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="14" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          
+          <!-- Golden Cream Gradient -->
+          <linearGradient id="jbGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff1d0" />
+            <stop offset="45%" stop-color="${accentHex}" />
+            <stop offset="85%" stop-color="#d99f36" />
+            <stop offset="100%" stop-color="#b37c1b" />
+          </linearGradient>
+        </defs>
+
+        <!-- Base Outer Black Circular Medallion -->
+        <circle cx="250" cy="250" r="230" fill="#08080a" stroke="${accentHex}" stroke-width="8" filter="url(#jbBacklightGlow)" />
+        
+        <!-- Outer Thin Accent Ring -->
+        <circle cx="250" cy="250" r="218" fill="none" stroke="url(#jbGoldGrad)" stroke-width="2.5" opacity="0.9" />
+
+        <!-- Inner Smooth Crescent Arc Line (matching physical illuminated sign) -->
+        <path d="M 120 250 A 130 130 0 1 0 380 250" fill="none" stroke="url(#jbGoldGrad)" stroke-width="3" opacity="0.4" stroke-dasharray="6,4" />
+
+        <!-- TOP CENTER: Gentleman Pompadour Side-Profile Silhouette -->
+        <g fill="url(#jbGoldGrad)">
+          <!-- Hair & Head Profile -->
+          <path d="M 235 110 
+                   C 215 110, 200 120, 195 135 
+                   C 190 142, 190 152, 198 158 
+                   C 205 163, 218 160, 225 152 
+                   C 232 144, 240 138, 252 138 
+                   C 268 138, 278 148, 276 162 
+                   C 274 172, 265 178, 258 182 
+                   C 252 185, 248 190, 248 196 
+                   L 248 202 
+                   C 255 202, 262 205, 267 210 
+                   C 272 215, 274 222, 273 228 
+                   C 271 234, 266 238, 260 238 
+                   C 256 238, 252 235, 250 230 
+                   C 246 220, 238 215, 228 215 
+                   C 218 215, 210 220, 206 230 
+                   C 202 240, 205 250, 214 256 
+                   C 220 260, 228 262, 235 262 
+                   C 250 262, 262 252, 265 238 
+                   C 268 226, 276 218, 288 214 
+                   C 298 210, 305 200, 304 188 
+                   C 302 170, 290 155, 275 145 
+                   C 270 130, 255 110, 235 110 Z" opacity="0" />
+
+          <!-- Precision Vector Silhouette of Male Head with Pompadour Hair & Beard -->
+          <path d="M 245 105 
+                   C 220 105, 198 120, 195 145 
+                   C 192 155, 196 165, 205 170 
+                   C 212 174, 222 170, 225 162 
+                   C 228 155, 235 150, 245 150 
+                   C 258 150, 268 158, 268 170 
+                   C 268 178, 262 184, 255 188 
+                   C 248 192, 244 198, 244 205 
+                   L 244 208
+                   C 240 206, 235 205, 230 205
+                   C 215 205, 202 215, 198 230
+                   C 195 240, 198 250, 205 258
+                   C 212 265, 222 268, 232 268
+                   C 245 268, 256 260, 260 248
+                   C 262 242, 265 238, 270 235
+                   C 275 238, 282 240, 290 238
+                   C 298 235, 303 228, 304 220
+                   C 305 210, 300 202, 292 198
+                   C 285 195, 280 190, 280 182
+                   C 280 160, 265 105, 245 105 Z 
+                   M 238 112 
+                   C 255 112, 282 130, 285 160 
+                   C 286 168, 280 176, 272 178 
+                   C 265 180, 260 185, 260 192 
+                   C 260 198, 264 202, 270 205 
+                   C 278 208, 284 214, 283 222 
+                   C 282 228, 276 232, 270 230 
+                   C 262 228, 254 232, 250 240 
+                   C 246 248, 238 252, 230 252 
+                   C 222 252, 215 248, 212 242 
+                   C 208 236, 208 228, 212 222 
+                   C 216 216, 224 212, 232 212 
+                   L 238 212
+                   L 238 112 Z" />
+
+          <!-- Stylized Side-Face Cutout Contour -->
+          <path d="M 230 115 
+                   C 210 118, 195 130, 195 150 
+                   C 195 162, 202 172, 215 175 
+                   C 222 165, 232 160, 245 160 
+                   C 255 160, 265 165, 270 175 
+                   C 275 160, 265 130, 245 120 
+                   C 240 117, 235 115, 230 115 Z" />
+          
+          <path d="M 222 178 C 210 185, 200 198, 202 215 C 205 230, 218 242, 235 242 C 248 242, 258 235, 262 222 C 255 215, 245 210, 232 210 C 222 210, 215 200, 215 190 C 215 185, 218 180, 222 178 Z" opacity="0.8" />
+        </g>
+
+        <!-- CENTER TYPOGRAPHY: J.B. -->
+        <g fill="url(#jbGoldGrad)">
+          <!-- Letter J -->
+          <path d="M 175 255 L 210 255 L 210 300 C 210 320, 198 330, 180 330 C 168 330, 158 322, 155 312 L 172 307 C 174 312, 177 315, 182 315 C 188 315, 193 310, 193 300 L 193 270 L 175 270 Z" />
+          
+          <!-- Dot between J and B -->
+          <circle cx="225" cy="320" r="7" />
+
+          <!-- Letter B -->
+          <path d="M 245 255 L 285 255 C 300 255, 312 263, 312 276 C 312 286, 305 292, 296 295 C 308 298, 316 307, 316 320 C 316 335, 302 342, 285 342 L 245 342 Z M 263 269 L 263 290 L 282 290 C 290 290, 295 285, 295 279 C 295 273, 290 269, 282 269 Z M 263 304 L 263 328 L 285 328 C 294 328, 299 322, 299 316 C 299 310, 294 304, 285 304 Z" />
+        </g>
+
+        <!-- RIGHT SIDE: Open Barber Scissors Icon (Positioned near B & SALON) -->
+        <g transform="translate(345, 300) rotate(-25)" fill="url(#jbGoldGrad)" stroke="url(#jbGoldGrad)">
+          <!-- Upper Blade -->
+          <path d="M 0 0 L 45 -45 C 48 -48, 52 -45, 50 -40 L 5 15 Z" />
+          <!-- Lower Blade -->
+          <path d="M 0 0 L 45 45 C 48 48, 52 45, 50 40 L 5 -15 Z" />
+          <!-- Center Screw Pivot -->
+          <circle cx="0" cy="0" r="4" fill="#08080a" stroke="url(#jbGoldGrad)" stroke-width="2" />
+          <!-- Finger Loop 1 -->
+          <circle cx="-18" cy="-22" r="11" fill="none" stroke-width="3.5" />
+          <!-- Finger Loop 2 -->
+          <circle cx="-18" cy="22" r="11" fill="none" stroke-width="3.5" />
+        </g>
+
+        <!-- SUBTITLE: — S A L O N — -->
+        <g fill="url(#jbGoldGrad)">
+          <!-- Flanking Dash Left -->
+          <rect x="145" y="372" width="28" height="3" rx="1.5" />
+          
+          <!-- SALON Text -->
+          <text x="250" y="380" font-family="'Cinzel', 'Georgia', serif" font-weight="800" font-size="28" letter-spacing="9" text-anchor="middle">SALON</text>
+          
+          <!-- Flanking Dash Right -->
+          <rect x="327" y="372" width="28" height="3" rx="1.5" />
+        </g>
+
+        <!-- BOTTOM VINTAGE FILIGREE FLOURISH -->
+        <path d="M 210 402 
+                 C 230 402, 240 412, 250 412 
+                 C 260 412, 270 402, 290 402 
+                 C 275 402, 265 418, 250 418 
+                 C 235 418, 225 402, 210 402 Z" fill="url(#jbGoldGrad)" />
+        <circle cx="250" cy="415" r="3" fill="url(#jbGoldGrad)" />
+        <line x1="170" y1="410" x2="202" y2="410" stroke="url(#jbGoldGrad)" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="298" y1="410" x2="330" y2="410" stroke="url(#jbGoldGrad)" stroke-width="1.5" stroke-linecap="round" />
+      </svg>`;
+    }
+
+    function getRoyalCrestLogoSVG(accentHex = '#f2cc80') {
+      return `
+      <svg class="w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="180" fill="#121215" stroke="${accentHex}" stroke-width="6" />
+        <path d="M 120 120 L 280 280 M 280 120 L 120 280" stroke="${accentHex}" stroke-width="12" stroke-linecap="round" />
+        <circle cx="200" cy="200" r="30" fill="#000" stroke="${accentHex}" stroke-width="4" />
+        <text x="200" y="208" font-family="sans-serif" font-weight="bold" font-size="22" fill="${accentHex}" text-anchor="middle">JB</text>
+        <text x="200" y="330" font-family="serif" font-size="24" font-weight="bold" fill="${accentHex}" text-anchor="middle" letter-spacing="4">SALON</text>
+      </svg>`;
+    }
+
+    function renderActiveLogo(containerId, extraClass = 'w-full h-full') {
+      const el = document.getElementById(containerId);
+      if (!el) return;
+
+      const mode = appState.shop.logoMode;
+      if (mode === 'official_jb') {
+        el.innerHTML = getOfficialJBSalonLogoSVG(appState.accentColor, extraClass);
+      } else if (mode === 'royal_crest') {
+        el.innerHTML = getRoyalCrestLogoSVG(appState.accentColor);
+      } else if (mode === 'custom_upload' && appState.shop.customLogoUrl) {
+        el.innerHTML = `<img src="${appState.shop.customLogoUrl}" alt="J.B. Salon Logo" class="w-full h-full object-cover rounded-full border-2 border-amber-400 shadow-lg" onerror="this.onerror=null; this.parentElement.innerHTML=getOfficialJBSalonLogoSVG();" />`;
+      } else {
+        el.innerHTML = getOfficialJBSalonLogoSVG(appState.accentColor, extraClass);
+      }
+    }
+
+    function renderAllLogos() {
+      renderActiveLogo('navLogoContainer');
+      renderActiveLogo('heroLogoDisplay');
+      renderActiveLogo('contactLogoDisplay');
+      renderActiveLogo('footerLogoContainer');
+      renderActiveLogo('passLogoContainer');
+      
+      // Admin Previews
+      const prevOff = document.getElementById('previewPresetOfficial');
+      if (prevOff) prevOff.innerHTML = getOfficialJBSalonLogoSVG(appState.accentColor);
+      const prevRoy = document.getElementById('previewPresetRoyal');
+      if (prevRoy) prevRoy.innerHTML = getRoyalCrestLogoSVG(appState.accentColor);
+      
+      const prevBox = document.getElementById('previewCustomBox');
+      if (prevBox && appState.shop.customLogoUrl) {
+        prevBox.innerHTML = `<img src="${appState.shop.customLogoUrl}" class="w-full h-full object-cover rounded-full" />`;
+      }
+    }
+
+    /* ==========================================================================
+       3. BILINGUAL EN/HI TRANSLATIONS & UI UPDATES
+       ========================================================================== */
+    const i18n = {
+      en: {
+        banner: "✂️ Welcome to J.B. Salon! Book your slot online & skip the waiting line.",
+        langLabel: "हिंदी",
+        servicesNav: "Services & Rates",
+        barbersNav: "Stylists",
+        bookNav: "Book Slot",
+        queueNav: "Live Queue",
+        contactNav: "Contact",
+        adminNav: "Admin",
+        heroBadge: "Official J.B. Salon Online Portal",
+        heroTitle1: "PREMIUM GROOMING",
+        heroTitle2: "FOR THE MODERN MAN",
+        heroDesc: "Experience perfection in hair cuts, beard shaping, facials & hair treatments. Reserve your time slot online, get your digital token, and enjoy zero waiting time.",
+        heroBookBtn: "⚡ Book Appointment Now",
+        heroMenuBtn: "📋 View Services & Rates",
+        stat1: "Hygiene & Safety",
+        stat2: "Customer Rating",
+        stat3: "Wait With Booking",
+        shopOpenText: "SHOP IS OPEN TODAY • 09:00 AM - 09:00 PM",
+        servicesSubtitle: "OUR PRICE LIST",
+        servicesTitle: "Services & Hair Treatments",
+        servicesDesc: "Select services below to instantly calculate duration & total fee, then proceed to book.",
+        summaryTitle: "SELECTED SERVICES",
+        selectedCount: "Services Selected",
+        estDuration: "Est. Duration",
+        totalFeeLabel: "Total Payable Amount",
+        bookSelectedBtn: "Book Selected",
+        barbersSubtitle: "EXPERT TEAM",
+        barbersTitle: "Meet Our Master Stylists",
+        barbersDesc: "Choose your preferred barber while booking your appointment slot.",
+        bookSubtitle: "FAST & EASY",
+        bookTitle: "Book Online Appointment",
+        bookDesc: "Select date, barber, and your desired time slot to confirm your token.",
+        labelDate: "Appointment Date *",
+        labelBarber: "Select Stylist *",
+        labelName: "Full Name *",
+        labelPhone: "Mobile / WhatsApp Number *",
+        labelSlot: "Available Time Slots *",
+        slotNote: "Sequential slots (Red = Booked)",
+        servicesSummaryHeading: "Selected Services Summary",
+        changeServicesBtn: "Add/Change Services",
+        totalPayableText: "Total Fee Payable:",
+        btnConfirm: "CONFIRM & GENERATE TOKEN PASS",
+        queueSubtitle: "LIVE STATUS",
+        queueTitle: "Today's Live Waiting Queue",
+        queueDesc: "Real-time status of current customers in salon and upcoming tokens.",
+        contactSubtitle: "VISIT US",
+        labelAddress: "Shop Address",
+        labelPhoneDetail: "Phone & WhatsApp",
+        labelHours: "Opening Hours",
+        btnCall: "📞 Call Shop Now",
+        btnMap: "🗺️ Get Directions"
+      },
+      hi: {
+        banner: "✂️ जे.बी. सैलून में आपका स्वागत है! ऑनलाइन स्लॉट बुक करें और लाइन से बचें।",
+        langLabel: "English",
+        servicesNav: "सेवाएं एवं दरें",
+        barbersNav: "हेयर आर्टिस्ट",
+        bookNav: "बुक स्लॉट",
+        queueNav: "लाइव कतार",
+        contactNav: "संपर्क",
+        adminNav: "एडमिन",
+        heroBadge: "ऑफिशियल जे.बी. सैलून ऑनलाइन पोर्टल",
+        heroTitle1: "प्रीमियम हेयरकट व ग्रूमिंग",
+        heroTitle2: "आधुनिक पुरुषों के लिए",
+        heroDesc: "शानदार हेयरकट, बियर्ड शेपिंग, फेशियल व हेयर ट्रीटमेंट का अनुभव लें। ऑनलाइन टाइम स्लॉट बुक करें, डिजिटल टोकन पाएं और बिना इंतजार के सेवा लें।",
+        heroBookBtn: "⚡ अभी अपॉइंटमेंट बुक करें",
+        heroMenuBtn: "📋 रेट लिस्ट देखें",
+        stat1: "100% स्वच्छता व सुरक्षा",
+        stat2: "ग्राहक रेटिंग",
+        stat3: "बुकिंग पर शून्य इंतजार",
+        shopOpenText: "दुकान आज खुली है • सुबह 09:00 - रात 09:00",
+        servicesSubtitle: "हमारी रेट लिस्ट",
+        servicesTitle: "सैलून सेवाएं व ट्रीटमेंट",
+        servicesDesc: "नीचे दी गई सेवाओं को चुनें, कुल समय व शुल्क तुरंत देखें और बुकिंग करें।",
+        summaryTitle: "चुनी गई सेवाएं",
+        selectedCount: "सेवाएं चुनी गईं",
+        estDuration: "अनुमानित समय",
+        totalFeeLabel: "कुल देय राशि",
+        bookSelectedBtn: "बुक करें",
+        barbersSubtitle: "विशेषज्ञ टीम",
+        barbersTitle: "हमारे मास्टर स्टाइलिस",
+        barbersDesc: "बुकिंग करते समय अपने पसंदीदा बार्बर को चुनें।",
+        bookSubtitle: "आसान व तेज़",
+        bookTitle: "ऑनलाइन अपॉइंटमेंट बुकिंग",
+        bookDesc: "तारीख, बार्बर और अपना पसंदीदा समय चुनकर टोकन जनरेट करें।",
+        labelDate: "अपॉइंटमेंट तिथि *",
+        labelBarber: "हेयर आर्टिस्ट चुनें *",
+        labelName: "पूरा नाम *",
+        labelPhone: "मोबाइल / व्हाट्सएप नंबर *",
+        labelSlot: "उपलब्ध समय स्लॉट *",
+        slotNote: "क्रमबद्ध स्लॉट (लाल = बुक है)",
+        servicesSummaryHeading: "चुनी गई सेवाओं का विवरण",
+        changeServicesBtn: "सेवाएं बदलें",
+        totalPayableText: "कुल देय शुल्क:",
+        btnConfirm: "कन्फर्म करें व टोकन पास पाएं",
+        queueSubtitle: "लाइव स्थिति",
+        queueTitle: "आज की लाइव वेटिंग लिस्ट",
+        queueDesc: "सैलून में मौजूद ग्राहकों और आगामी टोकन की रीयल-टाइम स्थिति।",
+        contactSubtitle: "सैलून आएं",
+        labelAddress: "सैलून का पता",
+        labelPhoneDetail: "फोन व व्हाट्सएप",
+        labelHours: "खुलने का समय",
+        btnCall: "📞 अभी कॉल करें",
+        btnMap: "🗺️ लोकेशन देखें"
+      }
+    };
+
+    function toggleLanguage() {
+      appState.lang = appState.lang === 'en' ? 'hi' : 'en';
+      saveAppState();
+      updateLanguageUI();
+    }
+
+    function updateLanguageUI() {
+      const lang = appState.lang;
+      const t = i18n[lang];
+
+      document.getElementById('langLabel').innerText = t.langLabel;
+      document.getElementById('bannerText').innerText = t.banner;
+      
+      // Nav
+      document.getElementById('navLinkServices').innerText = t.servicesNav;
+      document.getElementById('navLinkBarbers').innerText = t.barbersNav;
+      document.getElementById('navLinkBook').innerText = t.bookNav;
+      document.getElementById('navLinkQueue').innerText = t.queueNav;
+      document.getElementById('navLinkContact').innerText = t.contactNav;
+      document.getElementById('adminNavBtnText').innerText = t.adminNav;
+
+      // Brand
+      document.getElementById('navBrandName').innerText = lang === 'hi' ? appState.shop.nameHI : appState.shop.nameEN;
+      document.getElementById('navBrandTagline').innerText = lang === 'hi' ? appState.shop.taglineHI : appState.shop.taglineEN;
+
+      // Hero
+      document.getElementById('heroBadge').innerText = t.heroBadge;
+      document.getElementById('heroTitleLine1').innerText = t.heroTitle1;
+      document.getElementById('heroTitleLine2').innerText = t.heroTitle2;
+      document.getElementById('heroDescription').innerText = t.heroDesc;
+      document.getElementById('heroBookBtn').innerText = t.heroBookBtn;
+      document.getElementById('heroMenuBtn').innerText = t.heroMenuBtn;
+      document.getElementById('heroStat1').innerText = t.stat1;
+      document.getElementById('heroStat2').innerText = t.stat2;
+      document.getElementById('heroStat3').innerText = t.stat3;
+      document.getElementById('heroShopStatusBadge').innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span><span>${appState.shop.isOpen ? t.shopOpenText : (lang === 'hi' ? 'दुकान आज बंद है' : 'SHOP IS CLOSED TODAY')}</span>`;
+
+      // Services
+      document.getElementById('secServicesSubtitle').innerText = t.servicesSubtitle;
+      document.getElementById('secServicesTitle').innerText = t.servicesTitle;
+      document.getElementById('secServicesDesc').innerText = t.servicesDesc;
+      document.getElementById('summaryTitle').innerText = t.summaryTitle;
+      document.getElementById('totalFeeLabel').innerText = t.totalFeeLabel;
+      
+      // Barbers
+      document.getElementById('secBarbersSubtitle').innerText = t.barbersSubtitle;
+      document.getElementById('secBarbersTitle').innerText = t.barbersTitle;
+      document.getElementById('secBarbersDesc').innerText = t.barbersDesc;
+
+      // Booking
+      document.getElementById('bookSubTitle').innerText = t.bookSubtitle;
+      document.getElementById('bookMainTitle').innerText = t.bookTitle;
+      document.getElementById('bookDesc').innerText = t.bookDesc;
+      document.getElementById('labelBookingDate').innerText = t.labelDate;
+      document.getElementById('labelBookingBarber').innerText = t.labelBarber;
+      document.getElementById('labelCustomerName').innerText = t.labelName;
+      document.getElementById('labelCustomerPhone').innerText = t.labelPhone;
+      document.getElementById('labelTimeSlot').innerText = t.labelSlot;
+      document.getElementById('slotNote').innerText = t.slotNote;
+      document.getElementById('bookServicesSummaryHeading').innerText = t.servicesSummaryHeading;
+      document.getElementById('changeServicesBtn').innerText = t.changeServicesBtn;
+      document.getElementById('totalBookingPayableText').innerText = t.totalPayableText;
+      document.getElementById('btnConfirmBookingText').innerText = t.btnConfirm;
+
+      // Queue
+      document.getElementById('secQueueSubtitle').innerText = t.queueSubtitle;
+      document.getElementById('secQueueTitle').innerText = t.queueTitle;
+      document.getElementById('secQueueDesc').innerText = t.queueDesc;
+
+      // Contact
+      document.getElementById('secContactSubtitle').innerText = t.contactSubtitle;
+      document.getElementById('contactShopName').innerText = lang === 'hi' ? appState.shop.nameHI : appState.shop.nameEN;
+      document.getElementById('contactTagline').innerText = lang === 'hi' ? appState.shop.taglineHI : appState.shop.taglineEN;
+      document.getElementById('labelAddress').innerText = t.labelAddress;
+      document.getElementById('labelPhone').innerText = t.labelPhoneDetail;
+      document.getElementById('labelHours').innerText = t.labelHours;
+      document.getElementById('contactAddress').innerText = appState.shop.address;
+      document.getElementById('contactPhone').innerText = appState.shop.phone;
+      document.getElementById('contactHours').innerText = `Mon - Sun: ${appState.shop.openTime} - ${appState.shop.closeTime}`;
+      document.getElementById('btnCallShop').innerText = t.btnCall;
+      document.getElementById('btnCallShop').href = `tel:${appState.shop.phone}`;
+      document.getElementById('btnMapDirections').innerText = t.btnMap;
+
+      renderServices();
+      renderBarbers();
+      renderQueueTable();
+      updateBookingServicesSummary();
+    }
+
+    /* ==========================================================================
+       4. SERVICE SELECTION & LIVE FEE CALCULATOR
+       ========================================================================== */
+    let currentCategoryFilter = 'All';
+
+    function renderServices() {
+      const categories = ['All', ...new Set(appState.services.map(s => s.category))];
+      const pillsContainer = document.getElementById('categoryPills');
+      
+      pillsContainer.innerHTML = categories.map(cat => `
+        <button onclick="setCategoryFilter('${cat}')" class="px-4 py-2 rounded-full text-xs font-bold transition touch-manipulate ${currentCategoryFilter === cat ? 'bg-amber-500 text-black shadow-lg' : 'bg-neutral-900 border border-neutral-800 text-gray-300 hover:border-amber-500/50'}">
+          ${cat}
+        </button>
+      `).join('');
+
+      const filtered = currentCategoryFilter === 'All' 
+        ? appState.services 
+        : appState.services.filter(s => s.category === currentCategoryFilter);
+
+      const grid = document.getElementById('servicesGrid');
+      const lang = appState.lang;
+
+      grid.innerHTML = filtered.map(s => {
+        const isSelected = selectedServiceIds.includes(s.id);
+        const name = lang === 'hi' ? s.nameHI : s.nameEN;
+
+        return `
+          <div onclick="toggleServiceSelection('${s.id}')" class="cursor-pointer bg-darkcard rounded-2xl p-5 border transition-all duration-300 relative flex flex-col justify-between group touch-manipulate ${isSelected ? 'border-amber-400 bg-amber-500/10 shadow-xl shadow-amber-500/10' : 'border-neutral-800 hover:border-amber-500/40'}">
+            
+            <div class="absolute top-4 right-4 w-6 h-6 rounded-full border flex items-center justify-center transition ${isSelected ? 'bg-amber-400 border-amber-400 text-black' : 'border-neutral-700 text-transparent'}">
+              ✓
+            </div>
+
+            <div class="space-y-2 pr-8">
+              <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-amber-400 inline-block">${s.category}</span>
+              <h4 class="text-lg font-bold text-white group-hover:text-amber-300 transition">${name}</h4>
+              <p class="text-xs text-gray-400 font-light line-clamp-2">${s.desc}</p>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 mt-4 border-t border-neutral-800/80">
+              <span class="text-xs text-gray-400 flex items-center gap-1">
+                ⏱️ ${s.duration} mins
+              </span>
+              <span class="text-xl font-extrabold text-amber-400 font-cinzel">₹${s.price}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      updateServicesSummary();
+    }
+
+    function setCategoryFilter(cat) {
+      currentCategoryFilter = cat;
+      renderServices();
+    }
+
+    function toggleServiceSelection(serviceId) {
+      if (selectedServiceIds.includes(serviceId)) {
+        if (selectedServiceIds.length > 1) {
+          selectedServiceIds = selectedServiceIds.filter(id => id !== serviceId);
+        } else {
+          showToast('At least one service must be selected.', 'warning');
+          return;
+        }
+      } else {
+        selectedServiceIds.push(serviceId);
+      }
+      renderServices();
+      updateBookingServicesSummary();
+    }
+
+    function updateServicesSummary() {
+      const selectedObj = appState.services.filter(s => selectedServiceIds.includes(s.id));
+      const totalCount = selectedObj.length;
+      const totalDuration = selectedObj.reduce((acc, s) => acc + s.duration, 0);
+      const totalPrice = selectedObj.reduce((acc, s) => acc + s.price, 0);
+
+      const lang = appState.lang;
+      document.getElementById('selectedCountText').innerText = `${totalCount} ${lang === 'hi' ? 'सेवाएं चुनी गईं' : 'Services Selected'}`;
+      document.getElementById('selectedDurationText').innerText = `${lang === 'hi' ? 'अनुमानित समय' : 'Est. Duration'}: ${totalDuration} mins`;
+      document.getElementById('selectedTotalPrice').innerText = `₹${totalPrice}`;
+    }
+
+    function scrollToBookingWithSelected() {
+      const bookingSec = document.getElementById('booking');
+      if (bookingSec) bookingSec.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ==========================================================================
+       5. BARBERS ROSTER & SELECTION
+       ========================================================================== */
+    function renderBarbers() {
+      const grid = document.getElementById('barbersGrid');
+      const select = document.getElementById('bookBarber');
+
+      grid.innerHTML = appState.barbers.map(b => `
+        <div class="bg-darkcard border border-neutral-800 hover:border-amber-500/40 rounded-2xl p-6 flex flex-col items-center text-center space-y-3 transition duration-300 shadow-xl group">
+          <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-600 p-1 shadow-lg">
+            <div class="w-full h-full rounded-full bg-neutral-900 flex items-center justify-center text-3xl font-bold text-amber-300 font-cinzel">
+              ${b.name.charAt(0)}
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold text-white group-hover:text-amber-300 transition">${b.name}</h4>
+            <p class="text-xs text-amber-400 font-medium">${b.specialty}</p>
+            <p class="text-[11px] text-gray-400 mt-0.5">Experience: ${b.exp}</p>
+          </div>
+          <div class="flex items-center gap-2 pt-2">
+            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${b.isAvailable ? 'bg-emerald-950 text-emerald-400 border border-emerald-500/40' : 'bg-rose-950 text-rose-400 border border-rose-500/40'}">
+              ${b.isAvailable ? '● Available Today' : '● Busy'}
+            </span>
+            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-neutral-900 border border-neutral-800 text-gray-300">
+              Queue: ${b.queueCount}
+            </span>
+          </div>
+          <button onclick="selectBarberAndBook('${b.id}')" class="w-full py-2.5 rounded-xl bg-neutral-900 hover:bg-amber-500 hover:text-black border border-neutral-700 hover:border-amber-400 text-amber-300 text-xs font-bold transition touch-manipulate">
+            Book With ${b.name.split(' ')[0]}
+          </button>
+        </div>
+      `).join('');
+
+      select.innerHTML = appState.barbers.map(b => `
+        <option value="${b.id}">${b.name} (${b.specialty})</option>
+      `).join('');
+
+      renderAdminBarbers();
+    }
+
+    function selectBarberAndBook(barberId) {
+      document.getElementById('bookBarber').value = barberId;
+      renderTimeSlots();
+      scrollToBookingWithSelected();
+    }
+
+    /* ==========================================================================
+       6. SEQUENTIAL APPOINTMENT BOOKING & TIME SLOTS GENERATOR
+       ========================================================================== */
+    function initBookingDefaults() {
+      const today = new Date().toISOString().split('T')[0];
+      const dateInput = document.getElementById('bookDate');
+      dateInput.value = today;
+      dateInput.min = today;
+
+      renderTimeSlots();
+      updateBookingServicesSummary();
+    }
+
+    function renderTimeSlots() {
+      const dateVal = document.getElementById('bookDate').value;
+      const barberId = document.getElementById('bookBarber').value;
+      const grid = document.getElementById('timeSlotsGrid');
+
+      if (!dateVal || !barberId) return;
+
+      const openTime = appState.shop.openTime || '09:00';
+      const closeTime = appState.shop.closeTime || '21:00';
+      const interval = parseInt(appState.shop.slotInterval || 30);
+
+      const slots = generateTimeSlotsArray(openTime, closeTime, interval);
+      
+      // Check existing bookings for this date and barber
+      const bookedSlots = appState.bookings
+        .filter(b => b.date === dateVal && b.barberId === barberId && b.status !== 'Completed')
+        .map(b => b.timeSlot);
+
+      grid.innerHTML = slots.map(slot => {
+        const isBooked = bookedSlots.includes(slot);
+        return `
+          <button type="button" 
+                  ${isBooked ? 'disabled' : ''} 
+                  onclick="selectTimeSlot(this, '${slot}')" 
+                  class="time-slot-btn py-2.5 px-2 rounded-xl text-xs font-bold transition touch-manipulate flex flex-col items-center justify-center ${isBooked ? 'bg-rose-950/40 text-rose-500 border border-rose-900/50 cursor-not-allowed opacity-60' : 'bg-neutral-900 border border-neutral-800 text-gray-200 hover:border-amber-400 hover:text-amber-300'}">
+            <span>${slot}</span>
+            <span class="text-[9px] font-normal ${isBooked ? 'text-rose-400' : 'text-gray-500'}">${isBooked ? 'Booked' : 'Available'}</span>
+          </button>
+        `;
+      }).join('');
+
+      document.getElementById('selectedTimeSlot').value = '';
+    }
+
+    function generateTimeSlotsArray(startStr, endStr, intervalMins) {
+      const slots = [];
+      let [startH, startM] = startStr.split(':').map(Number);
+      let [endH, endM] = endStr.split(':').map(Number);
+
+      let current = new Date();
+      current.setHours(startH, startM, 0, 0);
+
+      const end = new Date();
+      end.setHours(endH, endM, 0, 0);
+
+      while (current < end) {
+        let hours = current.getHours();
+        let minutes = current.getMinutes();
+        let ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        let formattedH = hours < 10 ? '0' + hours : hours;
+        let formattedM = minutes < 10 ? '0' + minutes : minutes;
+
+        slots.push(`${formattedH}:${formattedM} ${ampm}`);
+        current.setMinutes(current.getMinutes() + intervalMins);
+      }
+      return slots;
+    }
+
+    function selectTimeSlot(btnEl, slotValue) {
+      document.querySelectorAll('.time-slot-btn').forEach(b => {
+        b.classList.remove('bg-amber-500', 'text-black', 'border-amber-400');
+      });
+      btnEl.classList.add('bg-amber-500', 'text-black', 'border-amber-400');
+      document.getElementById('selectedTimeSlot').value = slotValue;
+    }
+
+    function updateBookingServicesSummary() {
+      const selected = appState.services.filter(s => selectedServiceIds.includes(s.id));
+      const listEl = document.getElementById('bookingServicesList');
+      const totalEl = document.getElementById('bookingTotalFeeDisplay');
+      const lang = appState.lang;
+
+      listEl.innerHTML = selected.map(s => `
+        <div class="flex justify-between items-center py-1">
+          <span>• ${lang === 'hi' ? s.nameHI : s.nameEN} (${s.duration} mins)</span>
+          <span class="font-bold text-amber-300">₹${s.price}</span>
+        </div>
+      `).join('');
+
+      const totalFee = selected.reduce((acc, s) => acc + s.price, 0);
+      totalEl.innerText = `₹${totalFee}`;
+    }
+
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+
+      const date = document.getElementById('bookDate').value;
+      const barberId = document.getElementById('bookBarber').value;
+      const customerName = document.getElementById('customerName').value.trim();
+      const phone = document.getElementById('customerPhone').value.trim();
+      const slot = document.getElementById('selectedTimeSlot').value;
+
+      if (!slot) {
+        showToast('Please tap on an available time slot to select.', 'warning');
+        return;
+      }
+
+      const barber = appState.barbers.find(b => b.id === barberId);
+      const selectedObj = appState.services.filter(s => selectedServiceIds.includes(s.id));
+      const totalFee = selectedObj.reduce((acc, s) => acc + s.price, 0);
+      const servicesText = selectedObj.map(s => appState.lang === 'hi' ? s.nameHI : s.nameEN).join(', ');
+
+      // Sequential Token Generator
+      const tokenNum = (appState.bookings.length + 101);
+      const token = `${appState.shop.tokenPrefix || 'JB'}-${tokenNum}`;
+
+      const newBooking = {
+        token,
+        date,
+        timeSlot: slot,
+        customerName,
+        phone,
+        barberId,
+        barberName: barber ? barber.name : 'Master Stylist',
+        serviceIds: [...selectedServiceIds],
+        servicesText,
+        totalFee,
+        status: 'Waiting',
+        createdAt: new Date().toISOString()
+      };
+
+      appState.bookings.unshift(newBooking);
+      
+      // Update barber queue count
+      if (barber) barber.queueCount = (barber.queueCount || 0) + 1;
+
+      saveAppState();
+
+      // Reset Form & Re-render
+      document.getElementById('customerName').value = '';
+      document.getElementById('customerPhone').value = '';
+      renderTimeSlots();
+      renderBarbers();
+      renderQueueTable();
+
+      showToast(`Appointment Confirmed! Token #${token}`, 'success');
+      openPassModal(newBooking);
+    }
+
+    /* ==========================================================================
+       7. DIGITAL BOOKING PASS / RECEIPT MODAL & WHATSAPP GENERATOR
+       ========================================================================== */
+    let activeBookingPass = null;
+
+    function openPassModal(booking) {
+      activeBookingPass = booking;
+      const modal = document.getElementById('passModal');
+      
+      document.getElementById('passShopTitle').innerText = appState.shop.nameEN;
+      document.getElementById('passTokenNum').innerText = booking.token;
+      document.getElementById('passCustomerName').innerText = booking.customerName;
+      document.getElementById('passCustomerPhone').innerText = booking.phone;
+      document.getElementById('passBarberName').innerText = booking.barberName;
+      document.getElementById('passDateTime').innerText = `${booking.date} at ${booking.timeSlot}`;
+      document.getElementById('passTotalFee').innerText = `₹${booking.totalFee}`;
+      document.getElementById('passStatusBadge').innerText = `${booking.status.toUpperCase()}`;
+
+      const selectedObj = appState.services.filter(s => booking.serviceIds.includes(s.id));
+      document.getElementById('passServicesList').innerHTML = selectedObj.map(s => `
+        <div class="flex justify-between">
+          <span>${s.nameEN}</span>
+          <span class="font-semibold text-amber-300">₹${s.price}</span>
+        </div>
+      `).join('');
+
+      renderActiveLogo('passLogoContainer');
+      modal.classList.remove('hidden');
+    }
+
+    function closePassModal() {
+      document.getElementById('passModal').classList.add('hidden');
+    }
+
+    function sendWhatsAppPass() {
+      if (!activeBookingPass) return;
+
+      const shopPhone = appState.shop.whatsapp || '919876543210';
+      const b = activeBookingPass;
+
+      const msg = `*--- J.B. SALON APPOINTMENT CONFIRMATION ---*%0A` +
+                  `*Token Number:* ${b.token}%0A` +
+                  `*Customer Name:* ${b.customerName}%0A` +
+                  `*Stylist:* ${b.barberName}%0A` +
+                  `*Date & Time:* ${b.date} at ${b.timeSlot}%0A` +
+                  `*Services:* ${b.servicesText}%0A` +
+                  `*Total Fee:* ₹${b.totalFee}%0A` +
+                  `*Status:* Confirmed / Waiting%0A%0A` +
+                  `_Thank you for booking with J.B. Salon! Please arrive 5 minutes prior to your slot._`;
+
+      window.open(`https://wa.me/${shopPhone}?text=${msg}`, '_blank');
+    }
+
+    /* ==========================================================================
+       8. LIVE QUEUE BOARD & ADMIN QUEUE MANAGEMENT
+       ========================================================================== */
+    function renderQueueTable() {
+      const tbody = document.getElementById('queueTableBody');
+      const today = new Date().toISOString().split('T')[0];
+      const todayBookings = appState.bookings.filter(b => b.date === today);
+
+      if (todayBookings.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-gray-500">No appointments booked for today yet.</td></tr>`;
+      } else {
+        tbody.innerHTML = todayBookings.map(b => {
+          let statusBadge = '';
+          if (b.status === 'Waiting') statusBadge = '<span class="px-3 py-1 rounded-full text-[11px] font-bold bg-amber-950 text-amber-400 border border-amber-500/40">⏳ Waiting</span>';
+          else if (b.status === 'In Chair') statusBadge = '<span class="px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-500/40">✂️ In Chair</span>';
+          else statusBadge = '<span class="px-3 py-1 rounded-full text-[11px] font-bold bg-neutral-800 text-gray-400">✓ Completed</span>';
+
+          return `
+            <tr class="hover:bg-neutral-900/60 transition">
+              <td class="py-4 px-6 font-bold text-amber-400 font-cinzel">${b.token}</td>
+              <td class="py-4 px-6 font-medium text-white">${b.customerName}</td>
+              <td class="py-4 px-6 text-amber-300 text-xs">${b.barberName}</td>
+              <td class="py-4 px-6 text-xs text-gray-300 font-mono">${b.timeSlot}</td>
+              <td class="py-4 px-6 text-xs text-gray-400 max-w-xs truncate">${b.servicesText}</td>
+              <td class="py-4 px-6 font-bold text-amber-400 font-cinzel text-right">₹${b.totalFee}</td>
+              <td class="py-4 px-6 text-center">${statusBadge}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      renderAdminQueueTable();
+    }
+
+    function renderAdminQueueTable() {
+      const tbody = document.getElementById('adminQueueTableBody');
+      const bookings = appState.bookings;
+
+      // Stats
+      const today = new Date().toISOString().split('T')[0];
+      const todayBookings = bookings.filter(b => b.date === today);
+      
+      document.getElementById('statTotalBookings').innerText = todayBookings.length;
+      document.getElementById('statWaitingBookings').innerText = todayBookings.filter(b => b.status === 'Waiting').length;
+      document.getElementById('statCompletedBookings').innerText = todayBookings.filter(b => b.status === 'Completed').length;
+      
+      const revenue = todayBookings.filter(b => b.status === 'Completed').reduce((acc, b) => acc + b.totalFee, 0);
+      document.getElementById('statRevenue').innerText = `₹${revenue}`;
+
+      if (bookings.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-gray-500">No booking records found.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = bookings.map((b, idx) => `
+        <tr class="hover:bg-neutral-950 transition">
+          <td class="py-3 px-4 font-bold text-amber-400 font-cinzel">${b.token}</td>
+          <td class="py-3 px-4"><span class="font-bold text-white block">${b.customerName}</span><span class="text-[10px] text-gray-400">${b.phone}</span></td>
+          <td class="py-3 px-4 text-xs text-gray-300">${b.barberName}</td>
+          <td class="py-3 px-4 text-xs font-mono text-gray-400">${b.date}<br/>${b.timeSlot}</td>
+          <td class="py-3 px-4 text-xs text-gray-400 max-w-xs truncate">${b.servicesText}</td>
+          <td class="py-3 px-4 font-bold text-amber-400">₹${b.totalFee}</td>
+          <td class="py-3 px-4">
+            <select onchange="updateBookingStatus(${idx}, this.value)" class="bg-neutral-950 border border-neutral-700 rounded-lg px-2 py-1 text-xs text-white focus:outline-none focus:border-amber-400">
+              <option value="Waiting" ${b.status === 'Waiting' ? 'selected' : ''}>⏳ Waiting</option>
+              <option value="In Chair" ${b.status === 'In Chair' ? 'selected' : ''}>✂️ In Chair</option>
+              <option value="Completed" ${b.status === 'Completed' ? 'selected' : ''}>✓ Completed</option>
+            </select>
+            <button onclick="deleteBooking(${idx})" class="text-rose-400 hover:text-rose-300 ml-2 font-bold">✕</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function updateBookingStatus(idx, newStatus) {
+      appState.bookings[idx].status = newStatus;
+      saveAppState();
+      renderQueueTable();
+      showToast('Booking status updated!', 'info');
+    }
+
+    function deleteBooking(idx) {
+      if (confirm('Are you sure you want to delete this booking record?')) {
+        appState.bookings.splice(idx, 1);
+        saveAppState();
+        renderQueueTable();
+        showToast('Booking record deleted.', 'info');
+      }
+    }
+
+    function clearCompletedQueue() {
+      if (confirm('Clear all completed booking entries?')) {
+        appState.bookings = appState.bookings.filter(b => b.status !== 'Completed');
+        saveAppState();
+        renderQueueTable();
+        showToast('Completed bookings cleared.', 'success');
+      }
+    }
+
+    /* ==========================================================================
+       9. LIVE ADMIN PANEL LOGIC & TAB SWITCHING
+       ========================================================================== */
+    function openAdminModal() {
+      document.getElementById('adminModal').classList.remove('hidden');
+      document.getElementById('adminPinScreen').classList.remove('hidden');
+      document.getElementById('adminContent').classList.add('hidden');
+      document.getElementById('adminPinInput').value = '';
+      document.getElementById('pinErrorMsg').classList.add('hidden');
+    }
+
+    function closeAdminModal() {
+      document.getElementById('adminModal').classList.add('hidden');
+    }
+
+    function verifyAdminPin() {
+      const pin = document.getElementById('adminPinInput').value.trim();
+      const actualPin = appState.shop.pin || '1234';
+
+      if (pin === actualPin) {
+        document.getElementById('adminPinScreen').classList.add('hidden');
+        document.getElementById('adminContent').classList.remove('hidden');
+        document.getElementById('adminContent').classList.add('flex');
+        populateAdminShopForm();
+        renderAdminServices();
+        renderAdminBarbers();
+        switchAdminTab('queue');
+      } else {
+        document.getElementById('pinErrorMsg').classList.remove('hidden');
+      }
+    }
+
+    function switchAdminTab(tabName) {
+      document.querySelectorAll('.admin-tab').forEach(t => t.classList.add('hidden'));
+      document.querySelectorAll('[id^="tabBtn"]').forEach(b => {
+        b.classList.remove('bg-amber-500', 'text-black');
+        b.classList.add('bg-neutral-800', 'text-gray-400');
+      });
+
+      if (tabName === 'queue') {
+        document.getElementById('adminTabQueue').classList.remove('hidden');
+        document.getElementById('tabBtnQueue').classList.add('bg-amber-500', 'text-black');
+      } else if (tabName === 'shop') {
+        document.getElementById('adminTabShop').classList.remove('hidden');
+        document.getElementById('tabBtnShop').classList.add('bg-amber-500', 'text-black');
+      } else if (tabName === 'services') {
+        document.getElementById('adminTabServices').classList.remove('hidden');
+        document.getElementById('tabBtnServices').classList.add('bg-amber-500', 'text-black');
+      } else if (tabName === 'barbers') {
+        document.getElementById('adminTabBarbers').classList.remove('hidden');
+        document.getElementById('tabBtnBarbers').classList.add('bg-amber-500', 'text-black');
+      } else if (tabName === 'theme') {
+        document.getElementById('adminTabTheme').classList.remove('hidden');
+        document.getElementById('tabBtnTheme').classList.add('bg-amber-500', 'text-black');
+      }
+    }
+
+    function populateAdminShopForm() {
+      document.getElementById('adminShopNameEN').value = appState.shop.nameEN;
+      document.getElementById('adminShopNameHI').value = appState.shop.nameHI;
+      document.getElementById('adminTaglineEN').value = appState.shop.taglineEN;
+      document.getElementById('adminTaglineHI').value = appState.shop.taglineHI;
+      document.getElementById('adminPhone').value = appState.shop.phone;
+      document.getElementById('adminWhatsApp').value = appState.shop.whatsapp;
+      document.getElementById('adminAddress').value = appState.shop.address;
+      document.getElementById('adminOpenTime').value = appState.shop.openTime;
+      document.getElementById('adminCloseTime').value = appState.shop.closeTime;
+      document.getElementById('adminSlotInterval').value = appState.shop.slotInterval;
+      document.getElementById('adminTokenPrefix').value = appState.shop.tokenPrefix;
+      document.getElementById('adminSecurityPin').value = appState.shop.pin;
+
+      const radios = document.getElementsByName('logoPreset');
+      radios.forEach(r => {
+        if (r.value === appState.shop.logoMode) r.checked = true;
+      });
+      document.getElementById('logoUrlInput').value = appState.shop.customLogoUrl || '';
+    }
+
+    function saveShopDetails(e) {
+      e.preventDefault();
+      appState.shop.nameEN = document.getElementById('adminShopNameEN').value.trim();
+      appState.shop.nameHI = document.getElementById('adminShopNameHI').value.trim();
+      appState.shop.taglineEN = document.getElementById('adminTaglineEN').value.trim();
+      appState.shop.taglineHI = document.getElementById('adminTaglineHI').value.trim();
+      appState.shop.phone = document.getElementById('adminPhone').value.trim();
+      appState.shop.whatsapp = document.getElementById('adminWhatsApp').value.trim();
+      appState.shop.address = document.getElementById('adminAddress').value.trim();
+      appState.shop.openTime = document.getElementById('adminOpenTime').value;
+      appState.shop.closeTime = document.getElementById('adminCloseTime').value;
+      appState.shop.slotInterval = parseInt(document.getElementById('adminSlotInterval').value);
+      appState.shop.tokenPrefix = document.getElementById('adminTokenPrefix').value.trim() || 'JB';
+      appState.shop.pin = document.getElementById('adminSecurityPin').value.trim() || '1234';
+
+      saveAppState();
+      updateLanguageUI();
+      renderAllLogos();
+      renderTimeSlots();
+      showToast('Salon Information & Branding Saved!', 'success');
+    }
+
+    function updateLogoMode(mode) {
+      appState.shop.logoMode = mode;
+      saveAppState();
+      renderAllLogos();
+    }
+
+    function handleLogoUrlInput(url) {
+      appState.shop.customLogoUrl = url.trim();
+      appState.shop.logoMode = 'custom_upload';
+      saveAppState();
+      renderAllLogos();
+    }
+
+    function handleLogoFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          canvas.width = 300;
+          canvas.height = 300;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, 300, 300);
+          const dataUrl = canvas.toDataURL('image/png');
+          
+          appState.shop.customLogoUrl = dataUrl;
+          appState.shop.logoMode = 'custom_upload';
+          saveAppState();
+          renderAllLogos();
+          showToast('Custom logo uploaded successfully!', 'success');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    /* ==========================================================================
+       10. SERVICES & BARBERS ADMIN MANAGERS
+       ========================================================================== */
+    function renderAdminServices() {
+      const tbody = document.getElementById('adminServicesTableBody');
+      tbody.innerHTML = appState.services.map((s, idx) => `
+        <tr class="hover:bg-neutral-950 transition">
+          <td class="py-3 px-4 font-bold text-white">${s.nameEN} <span class="text-gray-400 font-normal">(${s.nameHI})</span></td>
+          <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-neutral-950 text-amber-400 text-[10px] font-bold">${s.category}</span></td>
+          <td class="py-3 px-4 text-xs text-gray-400">${s.duration} mins</td>
+          <td class="py-3 px-4 font-bold text-amber-400">₹${s.price}</td>
+          <td class="py-3 px-4 text-right">
+            <button onclick="deleteService(${idx})" class="text-rose-400 hover:text-rose-300 font-bold text-xs">Delete</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function openAddServiceModal() {
+      const nameEN = prompt('Enter Service Name (English):');
+      if (!nameEN) return;
+      const nameHI = prompt('Enter Service Name (Hindi):', nameEN) || nameEN;
+      const category = prompt('Category (Haircuts / Beard & Shave / Facial & Spa / Combos):', 'Haircuts') || 'Haircuts';
+      const duration = parseInt(prompt('Duration in minutes:', '30') || '30');
+      const price = parseInt(prompt('Price in INR (₹):', '200') || '200');
+
+      const newService = {
+        id: 's_' + Date.now(),
+        nameEN,
+        nameHI,
+        category,
+        duration,
+        price,
+        desc: `${nameEN} service at J.B. Salon.`
+      };
+
+      appState.services.push(newService);
+      saveAppState();
+      renderServices();
+      renderAdminServices();
+      showToast('New service added successfully!', 'success');
+    }
+
+    function deleteService(idx) {
+      if (confirm('Delete this service?')) {
+        appState.services.splice(idx, 1);
+        saveAppState();
+        renderServices();
+        renderAdminServices();
+        showToast('Service removed.', 'info');
+      }
+    }
+
+    function renderAdminBarbers() {
+      const grid = document.getElementById('adminBarbersGrid');
+      if (!grid) return;
+
+      grid.innerHTML = appState.barbers.map((b, idx) => `
+        <div class="bg-neutral-950 border border-neutral-800 rounded-xl p-4 flex flex-col justify-between space-y-3">
+          <div>
+            <h5 class="text-sm font-bold text-white">${b.name}</h5>
+            <p class="text-xs text-amber-400">${b.specialty}</p>
+            <p class="text-[11px] text-gray-400">Experience: ${b.exp}</p>
+          </div>
+          <div class="flex items-center justify-between pt-2 border-t border-neutral-800">
+            <button onclick="toggleBarberStatus(${idx})" class="text-xs font-bold ${b.isAvailable ? 'text-emerald-400' : 'text-rose-400'}">
+              ${b.isAvailable ? '● Available' : '● Busy'}
+            </button>
+            <button onclick="deleteBarber(${idx})" class="text-xs text-rose-400 hover:underline">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openAddBarberModal() {
+      const name = prompt('Enter Stylist Name:');
+      if (!name) return;
+      const specialty = prompt('Specialty (e.g. Fade Cut & Beard):', 'Hair Styling & Beard') || 'Hair Styling';
+      const exp = prompt('Experience (e.g. 5 Years):', '5 Years') || '5 Years';
+
+      appState.barbers.push({
+        id: 'b_' + Date.now(),
+        name,
+        specialty,
+        exp,
+        isAvailable: true,
+        queueCount: 0
+      });
+
+      saveAppState();
+      renderBarbers();
+      showToast('Barber added successfully!', 'success');
+    }
+
+    function toggleBarberStatus(idx) {
+      appState.barbers[idx].isAvailable = !appState.barbers[idx].isAvailable;
+      saveAppState();
+      renderBarbers();
+    }
+
+    function deleteBarber(idx) {
+ {
+        appState.barbers.splice(idx, 1);
+        saveAppState();
+        renderBarbers();
+        showToast('Barber removed.', 'info');
+      }
+    }
+
+    /* ==========================================================================
+       11. THEME PRESETS & DATA BACKUP / IMPORT
+       ========================================================================== */
+    function applyThemePreset(preset) {
+      if (preset === 'gold') appState.accentColor = '#f2cc80';
+      else if (preset === 'crimson') appState.accentColor = '#f43f5e';
+      else if (preset === 'emerald') appState.accentColor = '#10b981';
+      else if (preset === 'royal') appState.accentColor = '#6366f1';
+      else if (preset === 'silver') appState.accentColor = '#e2e8f0';
+
+      saveAppState();
+      renderAllLogos();
+      showToast(`Applied ${preset.toUpperCase()} theme!`, 'success');
+    }
+
+    function exportDataJSON() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `JB_Salon_Backup_${new Date().toISOString().split('T')[0]}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function importDataJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (imported && imported.shop) {
+            appState = imported;
+            saveAppState();
+            updateLanguageUI();
+            renderAllLogos();
+            showToast('Backup JSON imported successfully!', 'success');
+          } else {
+            showToast('Invalid backup file format.', 'danger');
+          }
+        } catch (err) {
+          showToast('Failed to parse JSON file.', 'danger');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function resetToFactoryDefaults() {
+      if (confirm('Reset all salon data, rates, barbers, and bookings to factory defaults?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        appState = JSON.parse(JSON.stringify(DEFAULT_DATA));
+        saveAppState();
+        updateLanguageUI();
+        renderAllLogos();
+        showToast('App reset to factory defaults.', 'info');
+      }
+    }
+
+    /* ==========================================================================
+       12. UTILITY UI HELPERS (TOASTS, NAV, INITIALIZATION)
+       ========================================================================== */
+    function toggleBanner() {
+      document.getElementById('topBanner').classList.add('hidden');
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      
+      let bg = 'bg-neutral-900 border-amber-500/50 text-amber-300';
+      if (type === 'success') bg = 'bg-emerald-950 border-emerald-500/50 text-emerald-300';
+      if (type === 'danger') bg = 'bg-rose-950 border-rose-500/50 text-rose-300';
+      if (type === 'warning') bg = 'bg-amber-950 border-amber-500/50 text-amber-300';
+
+      toast.className = `pointer-events-auto px-4 py-3 rounded-xl border text-xs font-semibold shadow-2xl transition transform translate-y-2 opacity-0 flex items-center gap-2 ${bg}`;
+      toast.innerHTML = `<span>💬</span> <span>${message}</span>`;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 50);
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    /* Initialize Application on DOM Ready */
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAllLogos();
+      updateLanguageUI();
+      initBookingDefaults();
+    });
+  </script>
+</body>
+</html>
